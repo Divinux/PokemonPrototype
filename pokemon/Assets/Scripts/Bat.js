@@ -7,25 +7,25 @@ var vDmg : int = 1;
 
 function Awake () 
 {
-animation.wrapMode = WrapMode.Once;
-vPlayer = GameObject.FindWithTag ("Player");
-vS = vPlayer.GetComponent(Player);
-vCas = vPlayer.GetComponentInChildren(Caster);
+	animation.wrapMode = WrapMode.Once;
+	vPlayer = GameObject.FindWithTag ("Player");
+	vS = vPlayer.GetComponent(Player);
+	vCas = vPlayer.GetComponentInChildren(Caster);
 }
 
 function Update () 
 {
-if(vCool > 0)
+	if(vCool > 0)
 	{
 		vCool--;
 	}
-else if(vHeld == 1)
-{
-	if(Input.GetMouseButtonDown(0))
+	else if(vHeld == 1)
 	{
-		animation.Play();
-		vCas.Bat(vDmg);
-	}
+		if(Input.GetMouseButtonDown(0))
+		{
+			animation.Play();
+			vCas.Bat(vDmg);
+		}
 	}
 }
 
@@ -42,7 +42,7 @@ function OnHit ()
 			transform.position = vS.vPos.position;
 			transform.eulerAngles = transform.parent.eulerAngles;
 			
- 
+
 			vS.vInv[i] = gameObject;
 			vS.vInvIc[i] = gameObject.GetComponent(Info).vIcon;
 			

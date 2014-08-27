@@ -130,7 +130,16 @@ function SaveFile(fileName : String)
 			{
 				sr.WriteLine ("4");
 			}
-			
+			//potato seed
+			if(a.vType == 7)
+			{
+				sr.WriteLine ("7");
+			}
+			//potato
+			if(a.vType == 8)
+			{
+				sr.WriteLine ("8");
+			}
 			
 		}
 	}
@@ -199,6 +208,20 @@ function Rd(sr2 : StreamReader)
 	{
 		print("medi found");
 		o = Instantiate(vItems[2], vHand.transform.position, vHand.transform.rotation);
+		o.SendMessage ("OnHit");
+	}
+	// pot seed
+	else if(int.Parse(line) == 7)
+	{
+		print("pot seed found");
+		o = Instantiate(vItems[6], vHand.transform.position, vHand.transform.rotation);
+		o.SendMessage ("OnHit");
+	}
+	// potot
+	else if(int.Parse(line) == 8)
+	{
+		print("pot found");
+		o = Instantiate(vItems[7], vHand.transform.position, vHand.transform.rotation);
 		o.SendMessage ("OnHit");
 	}
 	// pokedex

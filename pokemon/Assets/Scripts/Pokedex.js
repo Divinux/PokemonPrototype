@@ -41,6 +41,7 @@ function OnGUI ()
 		if(vTs.vOwned != 0)
 		{
 			GUI.Label (Rect (10, 50, 100, 20), "Exp: " + vTs.vHits + "/" + vTs.vExpLeft);
+			GUI.Label (Rect (10, 130, 100, 20), "Hunger: " + vTs.vHunger + "/" + vTs.vHmax);
 		}
 		
 		

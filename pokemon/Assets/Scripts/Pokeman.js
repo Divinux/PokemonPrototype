@@ -18,6 +18,9 @@ var vMoveSpeed : float = 1.0f;
 var vStopDist : int = 3;
 var vRange : int = 200;
 var vChill : int = 200;
+
+var vHunger : int = 100;
+var vHmax : int = 100;
 //in fight data
 var vMaxHP : int = 10;
 var vHP : int = 10;
@@ -43,6 +46,8 @@ var vDt : GameObject;
 var vDp : GameObject;
 //Green Text
 var vHep : GameObject;
+//yellow text
+var vYp : GameObject;
 
 var vRng : int;
 
@@ -131,6 +136,7 @@ function Attack(e : GameObject)
 {
 	vCountCurr--;
 	
+	
 	if(vCountCurr <= 0)
 	{
 		vAnim.CrossFade("attack");
@@ -141,6 +147,14 @@ function Attack(e : GameObject)
 
 		vCountCurr = vCountdown;
 		vHits++;
+		
+		vHunger--;
+	if(vHunger < 0)
+	{
+		vHunger =0;
+		Dmg(5);
+	}
+		
 	}
 	else
 	{
@@ -264,6 +278,19 @@ function Heal(i : int)
 	if(vHP > vMaxHP)
 	{
 		vHP = vMaxHP;
+	}
+}
+
+function fEat(s : int)
+{
+	vHunger += s;
+	
+	vDt = Instantiate(vYp, transform.position, transform.rotation);
+	vDt.GetComponent(DmgText).vText = "" + s;
+	
+	if(vHunger > vHmax)
+	{
+		vHunger = vHmax;
 	}
 }
 

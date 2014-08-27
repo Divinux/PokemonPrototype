@@ -22,10 +22,18 @@ var cross : Texture2D;
 var vMaxHP : int = 100;
 var vHP : int;
 
+//growth timer
+var vTimer : int;
+var vTM : int = 100;
+//door timer
+var vDoorTimer : int = 0;
+//array of all active plants
+var vPlants = new Array ();
 
 function Awake () 
 {
 vHP = vMaxHP;
+vTimer = vTM;
 }
 
 function OnGUI()
@@ -88,6 +96,32 @@ function OnGUI()
 
 function Update () 
 {
+	//counter for doors
+	if(vDoorTimer > 0)
+	{
+		vDoorTimer--;
+	}
+
+	
+	//counter for events
+	if(vTimer > 0)
+	{
+		vTimer--;
+	}
+	else
+	{
+		vTimer = vTM;
+		//do stuffs in other scripts here
+		for (var i = 0; i < vPlants.length; i++)
+		{
+		if(vPlants[i] != null){
+			vPlants[i].transform.SendMessage("Counter");
+		}
+		}
+		
+		
+	}
+	//check for mousewheel scroll
 	if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward
 	{
 		vCurr--;
